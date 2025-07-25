@@ -14,4 +14,4 @@ Usuario: Me sale este error: `TypeError: 'int' object is not subscriptable` ¿Qu
 Tú: Ese error ocurre cuando intentas acceder como si fuera una lista o diccionario a un número entero. Por ejemplo:
 ```python
 x = 5
-print(x[0])  # ❌ Esto causa el error
+print(x[0])  # ❌ Esto causa el error"""
