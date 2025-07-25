@@ -1,32 +1,95 @@
-// Espera a que el DOM cargue
 document.addEventListener("DOMContentLoaded", () => {
-    const form = document.querySelector(".chat-input");
-    const input = document.getElementById("pregunta");
+    const formularioChat = document.getElementById("chatForm");
+    const campoMensaje = document.getElementById("pregunta");
+    const contenedorChat = document.getElementById("chatBox");
 
-    form.addEventListener("submit", (e) => {
-        e.preventDefault(); // Evita que recargue la página
+    function agregarMensaje(textoMensaje, remitente) {
+        const divMensaje = document.createElement("div");
+        divMensaje.classList.add(`${remitente}-message`);
 
-        const valorInput = input.value;
-        console.log("Valor del input:", valorInput);
-        // const valorInput = input.value;
-        // console.log("Valor del input:", valorInput);
+        if (remitente === "bot") {
+            divMensaje.innerHTML = `<i class='bx bx-bot'></i><p>${textoMensaje}</p>`;
+        } else { 
+            divMensaje.innerHTML = `<p>${textoMensaje}</p><i class='bx bx-user-circle'></i>`;
+        }
+        contenedorChat.appendChild(divMensaje);
+        contenedorChat.scrollTop = contenedorChat.scrollHeight;
+    }
 
-        // Enviar a la API
+    // Esta función muestra u oculta un mensaje de "El bot está escribiendo..."
+    function alternarIndicadorEscribiendo(mostrar) {
+        const idIndicadorEscribiendo = "bot-typing-indicator";
+        let divEscribiendo = document.getElementById(idIndicadorEscribiendo);
+
+        if (mostrar) {
+            if (!divEscribiendo) {
+                divEscribiendo = document.createElement("div");
+                divEscribiendo.id = idIndicadorEscribiendo;
+                divEscribiendo.classList.add("bot-message"); // Usa la misma clase para estilos
+                divEscribiendo.innerHTML = `<i class='bx bx-bot'></i><p>Escribiendo...</p>`;
+                contenedorChat.appendChild(divEscribiendo);
+                contenedorChat.scrollTop = contenedorChat.scrollHeight; 
+            }
+        } else {
+            if (divEscribiendo) {
+                divEscribiendo.remove();
+            }
+        }
+    }
+
+    setTimeout(() => {
+        agregarMensaje("¡Hola! Soy tu asistente. ¿En qué error necesitas ayuda hoy?", "bot");
+    }, 1000); 
+
+    formularioChat.addEventListener("submit", (evento) => {  
+        evento.preventDefault(); 
+
+        const valorMensaje = campoMensaje.value.trim();
+        if (!valorMensaje) {
+            return;  
+        }
+
+        agregarMensaje(valorMensaje, "user");
+
+        console.log(" mensaje de  envio:", valorMensaje);
+ 
+        campoMensaje.value = "";
+
+        // Deshabilitar campo de mensaje y botón, y mostrar indicador de escribiendo
+        campoMensaje.disabled = true;
+        formularioChat.querySelector("button[type='submit']").disabled = true;
+        alternarIndicadorEscribiendo(true); // Muestra el indicador de "escribiendo"
+
+        // Enviar a la API usando Promesas
         fetch("http://127.0.0.1:8000/chat", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ pregunta: valorInput })
+            body: JSON.stringify({ pregunta: valorMensaje })
         })
-            .then(res => res.json())
-            .then(data => {
-                console.log("Respuesta del servidor:", data);
-                input.value = ""; // limpia el input después de enviar
-            })
-            .catch(err => {
-                console.error("Error al enviar la pregunta:", err);
-            });
-
-    })
-})
+        .then(respuestaFetch => {
+            if (!respuestaFetch.ok) {
+                return respuestaFetch.text().then(textoError => {
+                    throw new Error(`Error HTTP: ${respuestaFetch.status} - ${respuestaFetch.statusText}. Detalles: ${textoError}`);
+                });
+            }
+            return respuestaFetch.json();
+        })
+        .then(datosRespuesta => {
+            console.log("Respuesta del servidor:", datosRespuesta);
+            const respuestaBot = datosRespuesta.respuesta || "Lo siento, no pude obtener una respuesta clara del asistente.";
+            agregarMensaje(respuestaBot, "bot");
+        })
+        .catch(error => {
+            console.error("Error al enviar la pregunta o procesar la respuesta:", error);
+            agregarMensaje("Lo siento, hubo un error al conectar con el asistente. Por favor, inténtalo de nuevo más tarde.", "bot");
+        })
+        .finally(() => {
+            campoMensaje.disabled = false;
+            formularioChat.querySelector("button[type='submit']").disabled = false;
+            alternarIndicadorEscribiendo(false);  
+            campoMensaje.focus(); 
+        });
+    });
+});
