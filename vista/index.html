@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChatBot de Ayuda</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">
+      <i class='bx bx-bot'></i>
+      <h2>Asistente de Ayuda</h2>
+    </div>
+
+    <div class="chat-box" id="chatBox">
+      <div class="bot-message">
+        <i class='bx bx-bot'></i>
+        <p>¡Hola! Soy tu asistente. ¿En qué error necesitas ayuda hoy?</p>
+      </div>
+
+      <div class="user-message">
+        <p>Mi código muestra un error 404.</p>
+        <i class='bx bx-user-circle'></i>
+      </div>
+
+      <div class="bot-message">
+        <i class='bx bx-bot'></i>
+        <p>Un error 404 indica que la página no se encuentra. Verifica que la URL esté bien escrita.</p>
+      </div>
+    </div>
+
+    <form class="chat-input">
+      <input type="text" placeholder="Escribe tu error aquí..." required />
+      <button type="submit"><i class='bx bx-send'></i></button>
+    </form>
+  </div>
+</body>
+</html>

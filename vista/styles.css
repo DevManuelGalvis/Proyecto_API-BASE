@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: url('https://uxicans.com/wp-content/uploads/2023/10/criterio-8.jpg') no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.chat-container {
+  width: 370px;
+  backdrop-filter: blur(20px);
+  background: rgba(0, 0, 0, 0.15); /* más oscuro para contrastar con fondo claro */
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  color: #222; /* texto más oscuro */
+}
+
+.chat-header {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+.chat-header i {
+  font-size: 1.5rem;
+  color: #222;
+}
+
+.chat-box {
+  height: 350px;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bot-message, .user-message {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.bot-message {
+  justify-content: flex-start;
+}
+
+.user-message {
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+}
+
+.bot-message p, .user-message p {
+  max-width: 70%;
+  padding: 10px 15px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.7); /* burbuja clara con contraste */
+  color: #222;
+  font-size: 0.95rem;
+}
+
+.chat-input {
+  display: flex;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.chat-input input {
+  flex: 1;
+  border: none;
+  padding: 1rem;
+  background: transparent;
+  color: #222;
+  font-size: 1rem;
+  outline: none;
+}
+
+.chat-input input::placeholder {
+  color: #666;
+}
+
+.chat-input button {
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 1.5rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.chat-input button:hover {
+  color: #f6f67f;
+}
