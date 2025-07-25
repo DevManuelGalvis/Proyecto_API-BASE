@@ -59,19 +59,18 @@ body {
 }
 
 .bot-message {
-  justify-content: flex-start;
+  justify-content: flex-start;  
 }
 
 .user-message {
-  justify-content: flex-end;
-  flex-direction: row-reverse;
+  justify-content: flex-end;  
 }
 
 .bot-message p, .user-message p {
   max-width: 70%;
   padding: 10px 15px;
   border-radius: 15px;
-  background: rgba(255, 255, 255, 0.7); /* burbuja clara con contraste */
+  background: rgba(255, 255, 255, 0.7);  
   color: #222;
   font-size: 0.95rem;
 }
