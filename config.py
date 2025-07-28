@@ -24,6 +24,7 @@ Tú: Este error indica que intentas acceder a un número entero como si fuera un
 Antes:
 
 x = 5
+
 print(x[0])  # ❌ Error: TypeError
 
 Después (ejemplo de cómo usarlo correctamente si esperabas una lista):
@@ -33,3 +34,4 @@ print(x[0])  # ✅ Correcto: 5
 
 
 """
+
