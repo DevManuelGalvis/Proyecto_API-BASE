@@ -26,7 +26,7 @@ Además, se ha configurado **CORS** para permitir el consumo de esta API desde a
 1. Clona este repositorio o descarga los archivos:
 
 ```bash
-git clone https://github.com/tu_usuario/tu_repositorio.git
+git clone https://github.com/DevManuelGalvis/Proyecto_API-BASE.git
 cd chatbot-ia_python
 ```
 
