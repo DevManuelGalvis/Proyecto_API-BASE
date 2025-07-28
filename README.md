@@ -1,7 +1,7 @@
 
 # 🤖 Chatbot API experto en Python
 
-![Chatbot Python Logo](https://ruta-a-tu-imagen.com/img.png)
+![Chatbot Python Logo](./img.jpg)
 
 Este proyecto es una API REST desarrollada con **FastAPI**, que funciona como un chatbot experto en **Python**. Utiliza el modelo **Mistral** a través de **OpenRouter** (compatible con la API de OpenAI) para generar respuestas conversacionales inteligentes.  
 Además, se ha configurado **CORS** para permitir el consumo desde distintas plataformas front-end.
