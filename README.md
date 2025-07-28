@@ -3,8 +3,13 @@
 
 ![Chatbot Python Logo](./img.jpg)
 
-Este proyecto es una API REST desarrollada con **FastAPI**, que funciona como un chatbot experto en **Python**. Utiliza el modelo **Mistral** a través de **OpenRouter** (compatible con la API de OpenAI) para generar respuestas conversacionales inteligentes.  
-Además, se ha configurado **CORS** para permitir el consumo desde distintas plataformas front-end.
+Este proyecto es una API REST desarrollada con **FastAPI**, que funciona como un **chatbot especializado en detectar y resolver errores comunes de programación**.  
+Su funcionamiento se basa en el modelo **Mistral**, accedido mediante **OpenRouter** (compatible con la API de OpenAI), lo que permite generar respuestas conversacionales claras, útiles y enfocadas en soluciones reales para problemas de código.
+
+El asistente está entrenado para interpretar errores típicos en lenguajes como **Python, JavaScript, HTML, CSS, Java y C/C++**, explicarlos de forma sencilla y ofrecer correcciones concretas, con ejemplos antes y después.  
+
+Además, se ha configurado **CORS** para permitir el consumo de esta API desde aplicaciones front-end o entornos externos sin restricciones de origen.
+
 
 ---
 
