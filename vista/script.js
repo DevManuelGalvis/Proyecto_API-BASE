@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!divEscribiendo) {
                 divEscribiendo = document.createElement("div");
                 divEscribiendo.id = idIndicadorEscribiendo;
-                divEscribiendo.classList.add("bot-message"); // Usa la misma clase para estilos
+                divEscribiendo.classList.add("bot-message"); 
                 divEscribiendo.innerHTML = `<i class='bx bx-bot'></i><p>Escribiendo...</p>`;
                 contenedorChat.appendChild(divEscribiendo);
                 contenedorChat.scrollTop = contenedorChat.scrollHeight; 
@@ -53,14 +53,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         console.log(" mensaje de  envio:", valorMensaje);
  
-        campoMensaje.value = "";
-
-        // Deshabilitar campo de mensaje y botón, y mostrar indicador de escribiendo
+        campoMensaje.value = ""; 
         campoMensaje.disabled = true;
         formularioChat.querySelector("button[type='submit']").disabled = true;
-        alternarIndicadorEscribiendo(true); // Muestra el indicador de "escribiendo"
-
-        // Enviar a la API usando Promesas
+        alternarIndicadorEscribiendo(true);  
+ 
         fetch("http://127.0.0.1:8000/chat", {
             method: "POST",
             headers: {
